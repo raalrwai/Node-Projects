@@ -1,78 +1,93 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import './app.css';
+import React, { Component } from "react";
+import axios from "axios";
+import "./app.css";
+import { Button} from 'react-bootstrap';
+
 export default class CreateDiet extends Component {
   constructor(props) {
     super(props);
 
     this.onChangeFoodName = this.onChangeFoodName.bind(this);
-    this.onChangePortions = this.onChangePortions.bind(this);  
-    this.onChangeCalories = this.onChangeCalories.bind(this);  
+    this.onChangePortions = this.onChangePortions.bind(this);
+    this.onChangeCalories = this.onChangeCalories.bind(this);
 
     this.state = {
-      foodName: '',
+      foodName: "",
       portions: 0,
       calories: 0,
       users: []
+    };
   }
-}
 
-onChangeFoodName(e) {
-  this.setState({
-      foodName: e.target.value      //target = text box, value equals value in text bos
-  })
-}
+  onChangeFoodName(e) {
+    this.setState({
+      foodName: e.target.value //target = text box, value equals value in text bos
+    });
+  }
 
-onChangePortions(e) {
-  this.setState({
+  onChangePortions(e) {
+    this.setState({
       portions: e.target.value
-  })
-}
+    });
+  }
 
-onChangeCalories(e) {
-  this.setState({
+  onChangeCalories(e) {
+    this.setState({
       calories: e.target.value
-  })
-}
-onSubmit(e) {
-  e.preventDefault();    //prevent standard submit behavior
+    });
+  }
+  onSubmit(e) {
+    e.preventDefault(); //prevent standard submit behavior
 
-  const diet = {
+    const diet = {
       foodName: this.state.foodName,
       portions: this.state.portions,
-      calories: this.state.calories,
-      
-  }
-  axios.post('http://localhost:5000/diet/add', diet)
-        .then(res => console.log(res.data));
-  
+      calories: this.state.calories
+    };
+    axios
+      .post("http://localhost:5000/diet/add", diet)
+      .then(res => console.log(res.data));
 
-        window.location = '/';
-}
-    render() {
-        return (
-          <div>
-            <h3>Create a Diet Plan</h3>
-          
-          <div className="form-group"> 
+    window.location = "/";
+  }
+  render() {
+    return (
+      <div>
+        <h3>Create a Diet Plan</h3>
+        <form name="registration_form" id='registration_form' class="form-inline">
+        <div className="form-group">
           <label>Food Item: </label>
-          <input  type="text"
-              required
-              className="form-control"
-              value={this.state.foodName}
-              onChange={this.onChangeFoodName}
-              />
-          </div>
-          <div className="form-group"> 
-          <label>Food Item: </label>
-          <input  type="text"
-              required
-              className="form-control"
-              value={this.state.foodName}
-              onChange={this.onChangeFoodName}
-              />
-          </div>
+          <input
+            type="text"
+            required
+            className="form-control"
+            value={this.state.foodName}
+            onChange={this.onChangeFoodName}
+          />
         </div>
-        )
-    }
+        <div className="form-group">
+          <label>Portions: </label>
+          <input
+            type="text"
+            required
+            className="form-control"
+            value={this.state.portions}
+            onChange={this.onChangePortions}
+          />
+        </div>
+        <div className="form-group">
+          <label>Calories: </label>
+          <input
+            type="text"
+            required
+            className="form-control"
+            value={this.state.calories}
+            onChange={this.onChangeCalories}
+          />
+        </div>
+        <Button variant="primary" size = "lg">Add another option</Button>{' '}
+       </form>
+      </div>
+    );
+  }
 }
