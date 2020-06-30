@@ -1,0 +1,8 @@
+#maxCalories {
+    display: block;
+    margin: 10px;
+}
+.boxed {
+    border: 1px solid green ;
+    width: 25%;
+  }

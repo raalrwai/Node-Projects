@@ -22,9 +22,6 @@ export default class Navbar extends Component {
           <li className="navbar-item">
           <Link to="/diet" className="nav-link">Create Diet</Link>
           </li>
-          <li className="navbar-item">
-          <Link to="/example" className="nav-link">Add Row Input Rows</Link>
-          </li>
         </ul>
         </div>
       </nav>

@@ -1,30 +1,55 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./app.css";
-import { Button} from 'react-bootstrap';
+/* import { Button} from 'react-bootstrap'; */
 
 export default class CreateDiet extends Component {
   constructor(props) {
     super(props);
 
-  
-
     this.state = {
-      foodName: "",
-      portions: 0,
-      calories: 0,
-      diets: [{name:"", portionNumber:0, calorieAmount: 0,}],
+      maxCalories: "",
+      diets: [{ name: "", portionNumber: 0, calorieAmount: 0 }]
     };
   }
-  addDiet(e){
-    this.setState((prevState) => ({
-      diets: [...prevState.diets, {name:"", portionNumber: 0, calorieAmount: 0}],
+  addDiet(e) {
+    this.setState(prevState => ({
+      diets: [
+        ...prevState.diets,
+        { name: "", portionNumber: 0, calorieAmount: 0 }
+      ]
     }));
-  } 
+  }
+  validateDiet(e) {
+    let { diets, maxCalories } = this.state;
+    /* let diets = this.state.diets; */
+    var x = 0;
+    diets.forEach(element => {
+      x += parseInt(element.calorieAmount, 10);
+      console.log(element.calorieAmount, x);
+    });
+    if (x > maxCalories){
+      alert("You Have exceeded your weekly Calorie Limit");
+    }
+  
+  }
+  setCalorieAmount = e => {
+    this.setState({maxCalories: e.target.value})
+  };
+  handleChange = e => {
+    if (["name", "calorieAmount"].includes(e.target.className)) {
+      let diets = [...this.state.diets];
+      diets[e.target.dataset.id][
+        e.target.className
+      ] = e.target.value.toUpperCase();
+      this.setState({ diets }, () => console.log(this.state.diets));
+    } else {
+      this.setState({ [e.target.name]: e.target.value.toUpperCase() });
+    }
+  };
   onSubmit(e) {
     e.preventDefault(); //prevent standard submit behavior
-    
- 
+
     const diet = {
       foodName: this.state.foodName,
       portions: this.state.portions,
@@ -36,51 +61,32 @@ export default class CreateDiet extends Component {
 
     window.location = "/";
   }
-  handleSubmit = (e) => { e.preventDefault() }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    /* this.setState */
+  };
   render() {
-    let {diets} = this.state
+    let { diets, maxCalories } = this.state;
     return (
       <div>
         <h3>Create a Diet Plan</h3>
-        <form name="registration_form" id='registration_form' class="form-inline" onSubmit={this.handleSubmit}>
-        <button onClick={ () => this.addDiet() }>
-                   CLICK ME TO ADD AN INPUT
-               </button>
-        {/* { <div className="form-group">
-          <label>Food Item: </label>
-          <input
-            type="text"
-            required
-            className="form-control"
-            value={this.state.foodName}
-            onChange={this.onChangeFoodName}
-          />
-        </div>
-        <div className="form-group">
-          <label>Portions: </label>
-          <input
-            type="text"
-            required
-            className="form-control"
-            value={this.state.portions}
-            onChange={this.onChangePortions}
-          />
-        </div>
-        <div className="form-group">
-          <label>Calories: </label>
-          <input
-            type="text"
-            required
-            className="form-control"
-            value={this.state.calories}
-            onChange={this.onChangeCalories}
-          />
-        </div> } */}
-        {
-        diets.map((val, idx)=> {
-            let dietId = `diets-${idx}`, portionNumberId = `portionNumber-${idx}`, calorieAmountId = `calorieAmount-${idx}`
-            return (
+        <div class="boxed">Enter Max Calorie Amount</div>
+        <input type="text" name="maxCalories" id="maxCalories" value={maxCalories} onChange={this.setCalorieAmount}  />
 
+        <button onClick={() => this.addDiet()}>CLICK ME TO ADD AN INPUT</button>
+        <button onClick={() => this.validateDiet()}>
+          Check Calories total
+        </button>
+        <form
+          name="registration_form"
+          id="registration_form" /* class="form-inline" */
+          onSubmit={this.handleSubmit}
+          onChange={this.handleChange}
+        >
+          {diets.map((val, idx) => {
+            let dietId = `diets-${idx}`
+            return (
               <div key={idx}>
                 <label htmlFor={dietId}>{`Diet #${idx + 1}`}</label>
                 <input
@@ -88,23 +94,23 @@ export default class CreateDiet extends Component {
                   name={dietId}
                   data-id={idx}
                   id={dietId}
-                  value={diets[idx].name} 
+                  value={diets[idx].foodName}
                   className="name"
                 />
-                <label htmlFor={dietId}>Age</label>
+                <label htmlFor={dietId}># of Calories</label>
                 <input
-                  type="text"
+                  type="number"
                   name={dietId}
                   data-id={idx}
                   id={dietId}
-                  value={diets[idx].age} 
-                  className="age"
+                  value={diets[idx].caloriesAmount}
+                  className="calorieAmount"
                 />
               </div>
-            )
-          })
-        }     
-       </form>
+            );
+          })}
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }

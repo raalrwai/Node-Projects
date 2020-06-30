@@ -4,9 +4,7 @@ const Schema = mongoose.Schema;
 
 const dietSchema = new Schema({
 
-    foodName: { type: String, required: true },
-    portions: { type: Number, required: true },
-    calories: { type: Number, required: true },
+    maxCalories: { type: Number, required: true },
 }, {
     timestamps: true,
 });
