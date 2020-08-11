@@ -144,7 +144,7 @@ export default class CreateExercises extends Component {
           <div id="itemRows">
             Item quantity: <input type="text" name="add_qty" size="4" /> Item
             name: <input type="text" name="add_name" />{" "}
-            <input onclick="addRow(this.form);" type="button" value="Add row" />
+            <input onClick="addRow(this.form);" type="button" value="Add row" />
           </div>
         </form>
       </div>

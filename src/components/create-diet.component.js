@@ -71,7 +71,7 @@ export default class CreateDiet extends Component {
     return (
       <div>
         <h3>Create a Diet Plan</h3>
-        <div class="boxed">Enter Max Calorie Amount</div>
+        <div className="boxed">Enter Max Calorie Amount</div>
         <input type="text" name="maxCalories" id="maxCalories" value={maxCalories} onChange={this.setCalorieAmount}  />
 
         <button onClick={() => this.addDiet()}>CLICK ME TO ADD AN INPUT</button>
