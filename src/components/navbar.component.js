@@ -23,7 +23,7 @@ export default class Navbar extends Component {
         </Link>
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">
-            <li id="exercises"className="navbar-item"onClick={this.handleClick}>>
+            <li id="exercises"className="navbar-item"onClick={this.handleClick.bind(this.id)}>>
               <Link to="/" className="nav-link"/* onClick={this.handleClick} */>
                 Exercises
               </Link>

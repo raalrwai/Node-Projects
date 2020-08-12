@@ -7,11 +7,17 @@ import EditExercise from "./components/edit-exercise.component";
 import ExercisesList from "./components/exercises-list.component";
 import CreateDiet from "./components/create-diet.component";
 import Navbar from "./components/navbar.component";
+import LoginButton from './components/LoginButton';
+import LogoutButton from './components/LogoutButton';
+/* import LogoutButton from './components/LogoutButton';
+import Profile from './components/Profile';
 
+import { useAuth0 } from '@auth0/auth0-react'; */
 
 function App() {
   return (
-    <Router>
+    <>
+   <Router>
       <div className = "container">
    <Navbar />
       <br/>
@@ -22,6 +28,10 @@ function App() {
         <Route path="/diet" component={CreateDiet} />
       </div>
     </Router>
+    <LoginButton />
+    <LogoutButton />
+    </>
   );
+
 }
 export default App;
