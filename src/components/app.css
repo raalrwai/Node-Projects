@@ -7,7 +7,7 @@
     width: 25%;
   }
 
-/* .button {
+ .button {
   background-color: #4CAF50;
   border: none;
   color: white;
@@ -18,14 +18,14 @@
   font-size: 16px;
   margin: 4px 2px;
   position: absolute;
-  right:100px;
+  right:250px;
     top: 0px;
     ;
   cursor: pointer;
 } 
 .button2 {
   background-color: #4CAF50;
-  border: none;
+  border: 1px;
   color: white;
   padding: 15px 32px;
   text-align: center;
@@ -34,9 +34,9 @@
   font-size: 16px;
   margin: 4px 2px;
   position: absolute;
-  right:200px;
+  right: 150px;
+  
     top: 0px;
     ;
-  cursor: pointer;
-}  */
- 
+  cursor: pointer; 
+} 

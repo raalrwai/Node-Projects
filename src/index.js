@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-/* import * as serviceWorker from './serviceWorker';
- */
+ import * as serviceWorker from './serviceWorker';
+ 
 import { Auth0Provider } from '@auth0/auth0-react';
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -18,6 +18,5 @@ ReactDOM.render(
   </Auth0Provider>,
   document.getElementById('root')
 );
-/* ReactDOM.render(<App />, document.getElementById('root'));
-*/
-/* serviceWorker.unregister(); */
+
+ serviceWorker.unregister(); 

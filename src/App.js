@@ -27,10 +27,12 @@ function App() {
         <Route path="/create" component={CreateExercise} />
         <Route path="/user" component={CreateUser} />
         <Route path="/diet" component={CreateDiet} />
-      </div>
-    </Router>
-    <LoginButton/>
+        <LoginButton/>
     <LogoutButton/>
+      </div>
+  
+    </Router>
+
     </>
   );
 
