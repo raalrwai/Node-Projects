@@ -10,7 +10,7 @@ import Navbar from "./components/navbar.component";
 import LoginButton from './components/LoginButton';
 import LogoutButton from './components/LogoutButton';
 
-/* import Profile from './components/Profile'; */
+ import Profile from './components/Profile'; 
 
 
 
@@ -29,6 +29,7 @@ function App() {
         <Route path="/diet" component={CreateDiet} />
         <LoginButton/>
     <LogoutButton/>
+    <Profile/>
       </div>
   
     </Router>
